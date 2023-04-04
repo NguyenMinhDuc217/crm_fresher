@@ -1,0 +1,25 @@
+/* Added by Minh Duc on 2023-04-03 */
+.fieldLabel.accountname label.muted.pull-right {
+    color: blue !important;
+}
+.fieldLabel.accounts_business_type label.muted.pull-right {
+    color: blue !important;
+}
+.fieldLabel.phone label.muted.pull-right {
+    color: blue !important;
+}
+.fieldLabel.email1 label.muted.pull-right {
+    color: blue !important;
+}
+.fieldLabel.industry label.muted.pull-right {
+    color: blue !important;
+}
+
+.fieldLabel.employees label.muted.pull-right{
+    color: red;
+}
+.fieldLabel.annual_revenue label.muted.pull-right{
+    color: red;
+}
+
+/* End Minh Duc */

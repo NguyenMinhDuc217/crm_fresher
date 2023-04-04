@@ -1,0 +1,24 @@
+/* Added by Minh Duc on 2023-04-03 */
+.fieldLabel.accountname span.muted {
+    color: blue !important;
+}
+.fieldLabel.accounts_business_type span.muted {
+    color: blue !important;
+}
+.fieldLabel.phone span.muted {
+    color: blue !important;
+}
+.fieldLabel.email1 span.muted {
+    color: blue !important;
+}
+.fieldLabel.industry span.muted {
+    color: blue !important;
+}
+
+.fieldLabel.employees span.muted{
+    color: red;
+}
+.fieldLabel.annual_revenue span.muted{
+    color: red;
+}
+/* End Minh Duc */
