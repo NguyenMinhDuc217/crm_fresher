@@ -1,4 +1,4 @@
-CustomView_BaseController_Js('Products_CheckWarranty2_Js', {}, {
+CustomView_BaseController_Js('Products_CheckWarranty3_Js', {}, {
     // registerEvents được kích hoạt sau khi load giao diện -> hàm registerEventFormInit sẽ được kích hoạt
     registerEvents: function () {
         this._super();
@@ -12,10 +12,12 @@ CustomView_BaseController_Js('Products_CheckWarranty2_Js', {}, {
                 var serial = $('input[name="serial"]').val();
                 // Hiển thị trạng thái ajax loading
                 app.helper.showProgress();
+                $('#result').hide();
+
                 var params = {
                     module: 'Products',
                     //gọi tới nơi xử lý ajax
-                    view: 'CheckWarrantyAjax',
+                    action: 'CheckWarrantyAjax',
                     serial: serial
                 };
                 // Submit form via ajax
@@ -23,13 +25,31 @@ CustomView_BaseController_Js('Products_CheckWarranty2_Js', {}, {
                     .then(function (error, data) {
                         // Ẩn trạng thái ajax loading
                         app.helper.hideProgress();
+
                         if (error) {
                             var errorMsg = app.vtranslate('JS_CHECK_WARRANTY_ERROR_MSG', 'Products');
+                            // để hiển thị notification thông báo
                             app.helper.showErrorNotification({ message: errorMsg });
                             return;
                         }
+
+                        if (data.matched_product == null) {
+                            var errorMsg = app.vtranslate('JS_CHECK_WARRANTY_NO_PRODUCT_MATCH_ERROR_MSG');
+                            // để hiển thị notification thông báo
+                            app.helper.showErrorNotification({ message: errorMsg });
+                            return;
+                        }
+
                         // Show result
-                        $('#result').html(data);
+                        var productInfo = data.matched_product;
+                        var warrantyStatusClass = (productInfo.warranty_status == 'valid') ? 'label-success' : 'label-danger';
+                        $('#productName').text(productInfo.productname);
+                        $('#serialNo').text(productInfo.serialno);
+                        $('#warrantyStartDate').text(productInfo.start_date);
+                        $('#warrantyEndDate').text(productInfo.expiry_date);
+                        $('#warrantyStatus').text(productInfo.warranty_status_label);
+                        $('#warrantyStatus').removeClass('label-success label-danger').addClass(warrantyStatusClass);
+                        $('#result').show();
                     });
                 return false; // Prevent submit button to reload the page
             });

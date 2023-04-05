@@ -629,5 +629,32 @@ class Products_Record_Model extends Vtiger_Record_Model {
 
 		return $record;
 	}
+	static function checkSerialProducts($serial){
+		$db = PearDatabase::getInstance();
+		$sql = "SELECT COUNT(p.serialno)
+			FROM vtiger_products AS p
+			INNER JOIN vtiger_crmentity AS e ON (e.crmid = p.productid AND e.deleted = 0 AND e.setype = 'Products')
+			WHERE p.serialno = ?";
+		
+		$params = array($serial);
+		// To query data in database.
+		$record = $db->getOne($sql, $params);
+
+		return $record;
+	}
+		// Insert record to DB
+	static function declareProduct($productName, $website, $serialNo, $warrantyStartDate, $warrantyEndDate){
+		$recordModel = Products_Record_Model::getCleanInstance('Products');
+		$recordModel->set('productname', $productName);
+		$recordModel->set('website', $website);
+		$recordModel->set('serial_no', $serialNo);
+		$recordModel->set('start_date', $warrantyStartDate);
+		$recordModel->set('expiry_date', $warrantyEndDate);
+		$recordModel->save();
+
+		return $recordModel->get('id');
+	}
+
+
 	// End Minh Duc
 }

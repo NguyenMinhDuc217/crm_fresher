@@ -115,6 +115,12 @@ $languageStrings = array(
 	'LBL_WARRANTY_END_DATE' => 'Ngày kết thúc',
 	'LBL_WARRANTY_STATUS' => 'Tình trạng',
 	'LBL_VIEW_CHECKWARRANTY_TITLE' => 'Kiểm tra bảo hành',
+	'JS_CHECK_WARRANTY_ERROR_MSG' => 'LỖI KHI TÌM THÔNG TIN BẢO HÀNH',
+	'LBT_DECLARE_SUBMIT_BTN' => 'Lưu thông tin bảo hành',
+	'LBL_SERIAL_NO' => 'Số seri',
+	'LBL_DECLARE_PRODUCT_MODAL_TITLE' =>'Khai báo thiết bị',
+	'LBL_PRODUCT_WEBSITE' => 'Website',
+	'LBL_WARRANTY_DATE' => 'Ngày bảo hành',
 	// End Minh Duc
 );
 
@@ -123,4 +129,7 @@ $jsLanguageStrings = array(
 	'JS_SUB_PRODUCTS_WILL_NOT_BE_SHOWN_IN_INVENTORY' => 'Sản phẩm con sẽ không hiển thị trong kho',
 	'JS_SUCCESSFULLY_CHANGED_BUNDLE_COST' => 'Đã thay đổi giá của gói sản phẩm',
 	'JS_DELETION_OR_IN_ACTIVATION_CHILD_PRODUCT_MESSAGE' => 'SP này là một phần của gói sản phẩm. Giá của gói sản phẩm vẫn không đổi nếu bạn xóa SP này. Bạn có muốn tiếp tục không?',
+	'JS_DECLARE_PRODUCT_SUCCESS_ERROR_MSG' => 'Khai báo thiết bị thành công',
+	'JS_DECLARE_PRODUCT_ERROR_MSG' => 'Lỗi khai báo thiết bị',
+	'JS_DECLARE_PRODUCT_ERROR_ADREALY'=> 'Số seri đã tồn tại',
 );
