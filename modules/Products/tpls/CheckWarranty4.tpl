@@ -35,106 +35,84 @@
                 </tr>
             </table>
         </div>
+    </div>
 
-        <div id="declareProductModal" class="modal-dialog modal-content hide">
-            {assign var=HEADER_TITLE value={vtranslate('LBL_DECLARE_PRODUCT_MODAL_TITLE', 'Products')}}
-            {include file='ModalHeader.tpl'|vtemplate_path:$MODULE TITLE=$HEADER_TITLE}
-            <form class="form-horizontal declareProductForm" method="POST">
-                <input type="hidden" name="leftSideModule" value="{$SELECTED_MODULE_NAME}" />
-                <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>{vtranslate('LBL_PRODUCT_NAME', 'Products')}</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="controls col-sm-6">
-                        <input type="text" name="product_name" class="form-control" data-rule-required="true" />
-                    </div>
-                </div>
-                {* Date Field *}
-                {* <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>Ngày test</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="input-group inputElement col-sm-6" style="margin-bottom: 3px">
-                        <input type="text" name="datetest" class="form-control datePicker" data-fieldtype="date" data-date-
-                            format="{$USER_MODEL->get('date_format')}" data-rule-required="true" />
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    </div>
-                </div> *}
-                {* Dropdown *}
-                {* <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>Option</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <select name="leadsource" class="inputElement select2" data-fieldtype="picklist" style="display: none">
-                        <option value="">Bảo hành</option>
-                        <option value="value1">50%</option>
-                        <option value="value2">700%</option>
-                        <option value="value3">100%</option>
-                    </select>
-                </div> *}
+    <div id="declareProductModal" class="modal-dialog modal-content hide">
+        {assign var=HEADER_TITLE value={vtranslate('LBL_DECLARE_PRODUCT_MODAL_TITLE', 'Products')}}
+        {include file='ModalHeader.tpl'|vtemplate_path:$MODULE TITLE=$HEADER_TITLE}
 
-                <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>{vtranslate('LBL_PRODUCT_WEBSITE', 'Products')}</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="controls col-sm-6">
-                        <input type="text" name="website" class="form-control" data-rule-required="true" />
-                    </div>
+        <form class="form-horizontal declareProductForm" method="POST">
+            <input type="hidden" name="leftSideModule" value="{$SELECTED_MODULE_NAME}"/>
+
+            <div class="form-group">
+                <label class="control-label fieldLabel col-sm-5">
+                    <span>{vtranslate('LBL_PRODUCT_NAME', 'Products')}</span>
+                    &nbsp;
+                    <span class="redColor">*</span>
+                </label>
+                <div class="controls col-sm-6">
+                    <input type="text" name="product_name" class="form-control" data-rule-required="true" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>{vtranslate('LBL_SERIAL_NO', 'Products')}</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="controls col-sm-6">
-                        <input type="text" name="serial_no" id="serial_no" value="" class="form-control"
-                            data-rule-required="true" />
-                    </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label fieldLabel col-sm-5">
+                    <span>{vtranslate('LBL_PRODUCT_WEBSITE', 'Products')}</span>
+                    &nbsp;
+                    <span class="redColor">*</span>
+                </label>
+                <div class="controls col-sm-6">
+                    <input type="text" name="website" class="form-control" data-rule-required="true" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>{vtranslate('LBL_WARRANTY_START_DATE', 'Products')}</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="controls col-sm-6">
-                        {* <input type="text" name="warranty_start_date" class="form-control" data-rule-required="true" /> *}
-                        <input type="text" name="warranty_start_date" class="form-control-date datePicker" data-fieldtype="date" data-date-
-                            format="{$USER_MODEL->get('date_format')}" data-rule-required="true" />
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label fieldLabel col-sm-5">
+                    <span>{vtranslate('LBL_SERIAL_NO', 'Products')}</span>
+                    &nbsp;
+                    <span class="redColor">*</span>
+                </label>
+                <div class="controls col-sm-6">
+                    <input type="text" name="serial_no" id="serial_no" value="" class="form-control"
+                        data-rule-required="true" />
                 </div>
-                <div class="form-group">
-                    <label class="control-label fieldLabel col-sm-5">
-                        <span>{vtranslate('LBL_WARRANTY_END_DATE', 'Products')}</span>
-                        &nbsp;
-                        <span class="redColor">*</span>
-                    </label>
-                    <div class="controls col-sm-6">
-                        {* <input type="text" name="warranty_end_date" class="form-control" data-rule-required="true" /> *}
-                        <input type="text" name="warranty_end_date" class="form-control-date datePicker" data-fieldtype="date" data-date-
-                            format="{$USER_MODEL->get('date_format')}" data-rule-required="true" />
-                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                    </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label fieldLabel col-sm-5">
+                    <span>{vtranslate('LBL_WARRANTY_START_DATE', 'Products')}</span>
+                    &nbsp;
+                    <span class="redColor">*</span>
+                </label>
+                <div class="controls col-sm-6">
+                    {* <input type="text" name="warranty_start_date" class="form-control" data-rule-required="true" /> *}
+                    <input type="text" name="warranty_start_date" class="form-control-date datePicker" data-fieldtype="date"
+                        data-date- format="{$USER_MODEL->get('date_format')}" data-rule-required="true" />
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
-                {* Switch button *}
-                <div class="form-group">
-                    <input type="checkbox" name="enable_notification" class="bootstrap-switch" {if $ENABLED_NOTIFICATION eq '1'}checked{/if}>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label fieldLabel col-sm-5">
+                    <span>{vtranslate('LBL_WARRANTY_END_DATE', 'Products')}</span>
+                    &nbsp;
+                    <span class="redColor">*</span>
+                </label>
+                <div class="controls col-sm-6">
+                    {* <input type="text" name="warranty_end_date" class="form-control" data-rule-required="true" /> *}
+                    <input type="text" name="warranty_end_date" class="form-control-date datePicker" data-fieldtype="date"
+                        data-date- format="{$USER_MODEL->get('date_format')}" data-rule-required="true" />
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                 </div>
+            </div>
+
+            {* Switch button *}
+            <div class="form-group">
+                <input type="checkbox" name="enable_notification" class="bootstrap-switch"
+                    {if $ENABLED_NOTIFICATION eq '1'}checked{/if}>
+            </div>
+
             {include file='ModalFooter.tpl'|@vtemplate_path:'Vtiger'}
         </form>
     </div>
-
-
-
-</div>
 {/strip}

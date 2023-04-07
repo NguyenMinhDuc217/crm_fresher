@@ -97,7 +97,7 @@
                 </form>
             </div>
             <div class="tab-pane" id="tab2">
-                    Tab2 content
+                    Thông tin cá nhân
                 </div>
             </div>
         </div>

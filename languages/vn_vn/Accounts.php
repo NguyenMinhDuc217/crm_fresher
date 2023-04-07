@@ -101,6 +101,7 @@ $languageStrings = array(
 	//Added by Minh Duc on 2023-04-03
 	'LBL_BUSINESS_TYPE_B2B' => 'Công ty',
 	'LBL_BUSINESS_TYPE_B2C' => 'Cá nhân',
+	'LBL_DEMO_HEADRER_BASIC_BUTTON' => 'Demo header basic',
 	// End Minh Duc
 );
 

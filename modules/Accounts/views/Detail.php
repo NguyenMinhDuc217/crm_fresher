@@ -9,31 +9,52 @@
  * All Rights Reserved.
  * *********************************************************************************** */
 
-class Accounts_Detail_View extends Vtiger_Detail_View {
+class Accounts_Detail_View extends Vtiger_Detail_View
+{
+
+	// Added by Minh Duc on 07.04.2023
+	public function showModuleSummaryView($request) {
+		$recordId = $request->get('record');
+		$moduleName = $request->getModule();
+		$recordModel = Vtiger_Record_Model::getInstanceById($recordId);
+		$recordStrucure = Vtiger_RecordStructure_Model::getInstanceFromRecordModel($recordModel, Vtiger_RecordStructure_Model::RECORD_STRUCTURE_MODE_SUMMARY);
+
+		$extraSummary = 'Hello World!';
+		$viewer = $this->getViewer($request);
+		$viewer->assign('RECORD', $recordModel);
+		$viewer->assign('IS_AJAX_ENABLED', $this->isAjaxEnabled($recordModel));
+		$viewer->assign('EXTRA_SUMMARY', $extraSummary);
+		$viewer->assign('SUMMARY_RECORD_STRUCTURE', $recordStrucure->getStructure());
+		$viewer->assign('USER_MODEL', Users_Record_Model::getCurrentUserModel());
+		$viewer->assign('MODULE_NAME', $moduleName);
+		return $viewer->view('ModuleSummaryView.tpl', $moduleName, true);
+	}
+	// Ended Minh Duc
 
 	/**
 	 * Function to get activities
 	 * @param Vtiger_Request $request
 	 * @return <List of activity models>
 	 */
-	public function getActivities(Vtiger_Request $request) {
+	public function getActivities(Vtiger_Request $request)
+	{
 		$moduleName = 'Calendar';
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
 
 		$currentUserPriviligesModel = Users_Privileges_Model::getCurrentUserPrivilegesModel();
-		if($currentUserPriviligesModel->hasModulePermission($moduleModel->getId())) {
+		if ($currentUserPriviligesModel->hasModulePermission($moduleModel->getId())) {
 			$moduleName = $request->getModule();
 			$recordId = $request->get('record');
 
 			$pageNumber = $request->get('page');
-			if(empty ($pageNumber)) {
+			if (empty($pageNumber)) {
 				$pageNumber = 1;
 			}
 			$pagingModel = new Vtiger_Paging_Model();
 			$pagingModel->set('page', $pageNumber);
 			$pagingModel->set('limit', 10);
 
-			if(!$this->record) {
+			if (!$this->record) {
 				$this->record = Vtiger_DetailView_Model::getInstance($moduleName, $recordId);
 			}
 			$recordModel = $this->record->getRecord();
@@ -52,7 +73,8 @@ class Accounts_Detail_View extends Vtiger_Detail_View {
 		}
 	}
 
-	public function showModuleDetailView(Vtiger_Request $request) {
+	public function showModuleDetailView(Vtiger_Request $request)
+	{
 		$recordId = $request->get('record');
 		$moduleName = $request->getModule();
 

@@ -1,7 +1,7 @@
 <?php
 
 /*
-	System auto-generated on 2023-03-31 04:37:14 pm by admin. 
+	System auto-generated on 2023-04-06 03:04:36 pm by admin. 
 */
 
 $customModules = array(
@@ -313,6 +313,26 @@ $customModules = array(
         'hasActivities' => false,
         'isPerson' => false,
         'createdBy' => 'dev'
+    ),
+    'CPA' => array(
+        'moduleName' => 'CPA',
+        'displayNameEn' => 'A',
+        'displayNameVn' => 'A',
+        'menu' => 'MARKETING',
+        'isExtension' => true,
+        'hasActivities' => false,
+        'isPerson' => false,
+        'createdBy' => 'dev'
+    ),
+    'CPDemoo' => array(
+        'moduleName' => 'CPDemoo',
+        'displayNameEn' => 'Demoo',
+        'displayNameVn' => 'Demoo',
+        'menu' => 'MARKETING',
+        'isExtension' => false,
+        'hasActivities' => true,
+        'isPerson' => false,
+        'createdBy' => 'base'
     )
 );
 

@@ -54,25 +54,25 @@ CustomView_BaseController_Js('Products_CheckWarranty4_Js', {}, {
                 return false; // Prevent submit button to reload the page
             });
 
-            // Handle click event for button declare product
+            // Random serial
             $('#serial_no').val((Math.random() + 1).toString(36).substring(7));
+            
+            // Handle click event for button declare product
             $('#btnDeclare').click(function () {
                 var declareProductModal = $('#declareProductModal').clone(true, true);
-                // Xử lý sự kiện khi modal hiển thị,
+
+                // Handle even when show modal,
                 var callBackFunction = function (data) {
                     data.find('#declareProductModal').removeClass('hide');
                     var form = data.find('.declareProductForm');
 
+                    //Start the relate field
                     var controller = Vtiger_Edit_Js.getInstance();
                     controller.registerBasicEvents(form);
                     vtUtils.applyFieldElementsView(form);
+                    //Start the date field
                     vtUtils.initDatePickerFields(form);
-                    // form.find('.select2').select2(); // Bind all drodowns
-                    // form.find('[name="leadsource"]').select2(); // Bind a specific dropdown
-                    // form.find('.bootstrap-switch').bootstrapSwitch(); // Bind all buttons
-                    // form.find('[name="enable_notification"]').bootstrapSwitch(); // Bind a specific button
 
-                    console.log(data);
                     // Form validation
                     var params = {
                         submitHandler: function (form) {
@@ -81,32 +81,41 @@ CustomView_BaseController_Js('Products_CheckWarranty4_Js', {}, {
                             var params = form.serializeFormData();
                             params['module'] = 'Products';
                             params['action'] = 'DeclareAjax';
+
                             // Submit form
                             app.request.post({ data: params })
                                 .then(function (error, data) {
                                     app.helper.hideProgress();
+
                                     if (error) {
                                         var errorMsg = app.vtranslate('JS_DECLARE_PRODUCT_ERROR_MSG');
                                         app.helper.showErrorNotification({ 'message': errorMsg });
                                         return;
                                     }
+
                                     if (error == null && data.success != '1') {
                                         var errorMsg = app.vtranslate('JS_DECLARE_PRODUCT_ERROR_ADREALY');
                                         app.helper.showErrorNotification({ 'message': errorMsg });
                                         return;
                                     }
+
                                     app.helper.hideModal();
+
                                     var message = app.vtranslate('JS_DECLARE_PRODUCT_SUCCESS_ERROR_MSG');
                                     app.helper.showSuccessNotification({ 'message': message });
                                 });
                         }
                     };
+
                     form.vtValidate(params);
                 };
+
                 var modalParams = {
                     cb: callBackFunction
                 };
+
                 app.helper.showModal(declareProductModal, modalParams);
+
                 return false;
             });
         });

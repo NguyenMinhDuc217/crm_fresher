@@ -16,6 +16,7 @@
         }
 
         function process(Vtiger_Request $request){
+            
             //Get view from request
             $viewer = $this->getViewer($request);
 

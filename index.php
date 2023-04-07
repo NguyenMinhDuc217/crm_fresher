@@ -19,3 +19,4 @@ include_once 'includes/main/WebUI.php';
 session_start();    // Added by Hieu Nguyen on 2020-02-28 to make session accessible anywhere
 $webUI = new Vtiger_WebUI();
 $webUI->process(new Vtiger_Request($_REQUEST, $_REQUEST));
+;

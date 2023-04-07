@@ -612,16 +612,17 @@ class Products_Record_Model extends Vtiger_Record_Model {
 	}
 
 	// Aded by Minh Duc on 2023.04.04
+	// get product by serial
 	static function getInstanceBySerial($serial){
 		$db = PearDatabase::getInstance();
-		$sql = "SELECT p.*, e.*
-			FROM vtiger_products AS p
-			INNER JOIN vtiger_crmentity AS e ON (e.crmid = p.productid AND e.deleted = 0 AND e.setype = 'Products')
-			WHERE p.serialno = ?";
-		
+
+		$sql = "SELECT p.*
+		FROM fresher.vtiger_products AS p
+		INNER JOIN fresher.vtiger_crmentity AS e ON (e.crmid = p.productid AND e.deleted = 0 AND e.setype = 'Products')
+		WHERE p.serialno = ?";
+
 		$params = array($serial);
-		// To query data in database.
-		$result = $db->pquery($sql, $params);
+		$result = $db->pquery($sql ,$params);
 		$data = $db->fetchByAssoc($result);
 
 		$record = new Products_Record_Model();
@@ -629,8 +630,30 @@ class Products_Record_Model extends Vtiger_Record_Model {
 
 		return $record;
 	}
+
+	// get product form id by serial
+	static function getInstanceFromIdBySerial($serial){
+		$db = PearDatabase::getInstance();
+
+		$sql = "SELECT p.productid
+		FROM fresher.vtiger_products AS p
+		INNER JOIN fresher.vtiger_crmentity AS e ON (e.crmid = p.productid AND e.deleted = 0 AND e.setype = 'Products')
+		WHERE p.serialno LIKE ?
+		LIMIT 1";
+
+		$serialNo = "%$serial%";
+
+		// To query data in database.
+		$recordId = $db->getOne($sql, [$serialNo]);
+		
+		$recordModel = Vtiger_Record_Model::getInstanceById($recordId);
+		
+		return $recordModel;
+	}
+
 	static function checkSerialProducts($serial){
 		$db = PearDatabase::getInstance();
+
 		$sql = "SELECT COUNT(p.serialno)
 			FROM vtiger_products AS p
 			INNER JOIN vtiger_crmentity AS e ON (e.crmid = p.productid AND e.deleted = 0 AND e.setype = 'Products')
@@ -642,9 +665,11 @@ class Products_Record_Model extends Vtiger_Record_Model {
 
 		return $record;
 	}
+
 		// Insert record to DB
 	static function declareProduct($productName, $website, $serialNo, $warrantyStartDate, $warrantyEndDate){
 		$recordModel = Products_Record_Model::getCleanInstance('Products');
+		
 		$recordModel->set('productname', $productName);
 		$recordModel->set('website', $website);
 		$recordModel->set('serial_no', $serialNo);
@@ -654,7 +679,5 @@ class Products_Record_Model extends Vtiger_Record_Model {
 
 		return $recordModel->get('id');
 	}
-
-
 	// End Minh Duc
 }

@@ -130,7 +130,7 @@ $hiddenModulesForModuleManager = array(
     'Reports',
     'CPKanban',
     'CPNotification',
-    'CPLocalization',
+    'CPLocalization',   
     'CPMauticIntegration',
     'CPChatBotIntegration',
     'CPSocialIntegration',

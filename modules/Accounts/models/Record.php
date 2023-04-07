@@ -146,4 +146,25 @@ class Accounts_Record_Model extends Vtiger_Record_Model {
 		$result = $db->pquery($sql, [$type, $accountId]);
 	}
 	// Ended by Phuc
+
+	// Added by Minh Duc on 06.04.2023
+	static function getListAccountByAccountType(){
+		$db = PearDatabase::getInstance();
+
+		$sql = "SELECT a.*
+		FROM vtiger_account AS a
+		INNER JOIN fresher.vtiger_crmentity AS e ON (e.crmid = a.accountid AND e.deleted = 0 AND e.setype = 'Accounts')
+		WHERE a.account_type = ?";
+
+		$account_type = 'Competitor';
+
+		// To query data in database.
+		$recordModel = $db->pquery($sql, [$account_type]);
+
+		while($row = $db->fetchByAssoc($recordModel)){
+			$matchedAccount[] = $row;
+		}
+		return $matchedAccount;
+	}
+	// Ended by Minh Duc
 }

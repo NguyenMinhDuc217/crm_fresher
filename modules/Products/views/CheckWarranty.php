@@ -1,7 +1,9 @@
 <?php
     class Products_CheckWarranty_View extends CustomView_Base_View {
         
+        // Create parent class
         function __construct(){
+            // $isFullView = Fasle => view of ajax
             parent::__construct($isFullView = true);    
         }
 
@@ -26,7 +28,7 @@
                 $viewer->assign('RESULT', $this->renderResult($matchedProduct));
             }
 
-            //linh view 
+            //link view 
             $viewer->display('modules/Products/tpls/CheckWarranty.tpl');
         }
 

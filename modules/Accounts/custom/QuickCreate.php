@@ -27,8 +27,10 @@ $displayParams = array(
 			// But complicated or multi-lines template PLEASE link to external file
 			'customTemplate' => '{include file="modules/Accounts/tpls/InterestsFieldEditView.tpl"}',
 		),
+		// Added by Minh Duc on 03.04.2023
 		'accounts_business_type' => array(
 			'customTemplate' => '{include file="modules/Accounts/tpls/BusinessTypeQuickCreate.tpl"}',
 		),
+		// End Minh Duc
 	),
 );

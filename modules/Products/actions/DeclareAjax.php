@@ -29,6 +29,7 @@
                 else{
                     $result = array('success' => false);
                 }
+                
                 //Respone
                 $response = new Vtiger_Response();
                 $response->setResult($result);

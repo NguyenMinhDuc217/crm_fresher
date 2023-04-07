@@ -19,6 +19,9 @@
 	{/foreach}
 
 	<div class="left-block col-lg-4">
+	{* Added by Minh Duc on 06.04.2023 *}
+	{include file="modules/Accounts/tpls/ExtraSummaryView.tpl"}
+	{* End Minh Duc *}
 		{* Module Summary View*}
 		<div class="summaryView">
 			<div class="summaryViewHeader">
